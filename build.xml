@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="NumberAsWords" default="jar" basedir=".">
+
+    <target name="init">
+        <mkdir dir="build/classes" />
+        <mkdir dir="dist" />
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="src/main" destdir="build/classes" />
+    </target>
+
+    <target name="clean" description="delete old files">
+        <delete dir="build/classes"/>
+        <delete dir="build"/>
+        <delete dir="dist"/>
+        <delete file = "MANIFEST.MF"/>
+    </target>
+
+
+    <target name = "jar" depends="clean, compile" >
+        <manifest file = "MANIFEST.MF">
+            <attribute name = "Main-Class" value = "com.simplilearn.main.NumberConverter"/>
+            <attribute name = "Class-Path" value = "build/classes"/>
+        </manifest>
+        <jar destfile = "dist/NumberAsWords.jar" basedir = "build/classes/" includes = "**/*.class"  manifest = "MANIFEST.MF"/>
+    </target>
+</project>
